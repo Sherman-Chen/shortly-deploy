@@ -31,11 +31,11 @@ module.exports = function(grunt) {
     uglify: {
       target: {
         files: {
-          '../src/min.js': './public/dist/built.js',
-          '../src/backbone.min.js': './public/lib/backbone.js',
-          '../src/jquery.min.js': './public/lib/backbone.js',
-          '../src/handlebars.min.js': './public/lib/handlebars.js',
-          '../src/underscore.min.js': './public/lib/underscore.js'
+          'public/dist/min.js': './public/dist/built.js',
+          'public/dist/backbone.min.js': './public/lib/backbone.js',
+          'public/dist/jquery.min.js': './public/lib/backbone.js',
+          'public/dist/handlebars.min.js': './public/lib/handlebars.js',
+          'public/dist/underscore.min.js': './public/lib/underscore.js'
         }
       }
     },
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat', 'uglify', 'nodemon'
+    'eslint', 'concat', 'uglify', 'nodemon'
   ]);
 
   grunt.registerTask('upload', function(n) {
