@@ -29,9 +29,13 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      my_target: {
+      target: {
         files: {
-          '../src/min.js' : './public/dist/built.js'
+          '../src/min.js': './public/dist/built.js',
+          '../src/backbone.min.js': './public/lib/backbone.js',
+          '../src/jquery.min.js': './public/lib/backbone.js',
+          '../src/handlebars.min.js': './public/lib/handlebars.js',
+          '../src/underscore.min.js': './public/lib/underscore.js'
         }
       }
     },
@@ -39,7 +43,7 @@ module.exports = function(grunt) {
     eslint: {
       target: [
         // Add list of files to lint here
-        '../src/min.js'
+        './public/client/*.js'
       ]
     },
 
@@ -104,7 +108,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'concat', 'uglify', 'estlint'
+    'mochaTest', 'eslint', 'concat', 'uglify'
   ]);
 
   grunt.registerTask('prod', [
