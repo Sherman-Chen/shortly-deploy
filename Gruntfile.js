@@ -108,11 +108,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'mochaTest', 'eslint', 'concat', 'uglify'
+    'mochaTest', 'eslint', 'concat', 'uglify', 'watch'
   ]);
 
-  grunt.registerTask('prod', [
-    // add pro tasks
+  grunt.registerTask('dev', [
+    // dev tasks
+    'mochaTest', 'eslint', 'concat', 'uglify', 'nodemon', 'watch'
   ]);
 
 };
