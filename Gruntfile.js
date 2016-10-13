@@ -69,8 +69,18 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        command: 'git push live master'
+      },
+      gitAdd: {
+        command: 'git add .'
+      },
+      gitCommit: {
+        command: 'git commit -m "commiting for live server"'
+      },
+      multiple: {
+        command: ['gitAdd', 'gitCommit', 'prodServer'].join('&&')
       }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -82,9 +92,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('server-dev', function (target) {
-    grunt.task.run([ 'nodemon', 'watch' ]);
-  });
+  // grunt.registerTask('server-dev', function (target) {
+  //   grunt.task.run([ 'nodemon', 'watch' ]);
+  // });
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
@@ -101,12 +111,13 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
       // add your production server task here
+      grunt.task.run(['prod']);
     } else {
-      grunt.task.run([ 'server-dev' ]);
+      grunt.task.run([ 'dev' ]);
     }
   });
 
-  grunt.registerTask('deploy', [
+  grunt.registerTask('default', [
     // add your deploy tasks here
     'mochaTest', 'eslint', 'concat', 'uglify', 'watch'
   ]);
@@ -116,4 +127,7 @@ module.exports = function(grunt) {
     'mochaTest', 'eslint', 'concat', 'uglify', 'nodemon', 'watch'
   ]);
 
+  grunt.registerTask('prod', [
+    'eslint', 'concat', 'uglify', 'shell:multiple', 'nodemon'
+  ]);
 };
