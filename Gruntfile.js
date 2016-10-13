@@ -80,7 +80,7 @@ module.exports = function(grunt) {
       // multiple: {
       //   command: ['git add .', 'git commit -m "commit for live server"', 'git push live master']
       //   .join('&&')
-      }
+      // }
     }
   });
 
