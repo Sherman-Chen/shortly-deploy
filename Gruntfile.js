@@ -71,15 +71,15 @@ module.exports = function(grunt) {
       prodServer: {
         command: 'git push live master'
       },
-      gitAdd: {
-        command: 'git add .'
-      },
-      gitCommit: {
-        command: 'git commit -m "commiting for live server"'
-      },
-      multiple: {
-        command: ['git add .', 'git commit -m "commit for live server"', 'git push live master']
-        .join('&&')
+      // gitAdd: {
+      //   command: 'git add .'
+      // },
+      // gitCommit: {
+      //   command: 'git commit -m "commiting for live server"'
+      // },
+      // multiple: {
+      //   command: ['git add .', 'git commit -m "commit for live server"', 'git push live master']
+      //   .join('&&')
       }
     }
   });
@@ -129,6 +129,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('prod', [
-    'eslint', 'concat', 'uglify', 'shell:multiple', 'nodemon'
+    'eslint', 'concat', 'uglify', 'shell:prodServer', 'nodemon'
   ]);
 };
