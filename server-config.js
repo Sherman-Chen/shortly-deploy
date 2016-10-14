@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var util = require('./lib/utility');
 
+// var user = require('../app/config').user;
+// var url = require('../app/config').url;
+
 var handler = require('./lib/request-handler');
 
 var app = express();
